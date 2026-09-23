@@ -401,37 +401,6 @@ export default function TeamFixturePage() {
   return (
     <div className="space-y-8 pb-16">
 
-      {/* Top Header Controls Bar */}
-      <div className="p-6 rounded-2xl bg-slate-900/90 border border-cyan-500/30 cyber-glass flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h2 className="font-orbitron font-black text-2xl text-white flex items-center gap-2">
-            <Swords className="w-6 h-6 text-cyan-400" /> TOURNAMENT CONTROL HUB
-          </h2>
-          <p className="text-xs text-slate-400">Manage 5 teams, 25 roster slots, generate fixtures & simulate matches.</p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3">
-          <button 
-            onClick={handleQuickLoadPresets}
-            className="px-4 py-2.5 rounded-xl bg-cyan-500/15 border border-cyan-500/40 text-cyan-300 font-orbitron font-bold text-xs hover:bg-cyan-500/30 transition flex items-center gap-2"
-          >
-            <Sparkles className="w-4 h-4 text-cyan-400" /> Quick Load Sample Teams
-          </button>
-          <button 
-            onClick={handleExportJSON}
-            className="px-4 py-2.5 rounded-xl bg-slate-800 border border-white/10 text-slate-300 font-orbitron font-bold text-xs hover:bg-white/10 transition flex items-center gap-2"
-          >
-            <Download className="w-4 h-4 text-slate-400" /> Export JSON
-          </button>
-          <button 
-            onClick={handleReset}
-            className="px-3 py-2.5 rounded-xl bg-pink-500/10 border border-pink-500/30 text-pink-400 hover:bg-pink-500/20 transition"
-            title="Reset All Data"
-          >
-            <Trash2 className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
 
       {/* Error Alert */}
       {formError && (

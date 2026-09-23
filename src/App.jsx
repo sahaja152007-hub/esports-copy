@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Swords, Trophy, ExternalLink } from 'lucide-react';
+import { Swords, Trophy } from 'lucide-react';
 import HomePage from './components/HomePage';
 import TeamFixturePage from './components/TeamFixturePage';
 
@@ -48,19 +48,6 @@ export default function App() {
               <Trophy className="w-3.5 h-3.5" /> Teams & Fixtures
             </button>
           </nav>
-
-          {/* Right Header Actions */}
-          <div className="flex items-center gap-3">
-            <a 
-              href="https://github.com/sahaja152007-hub/esports-tournament-portal" 
-              target="_blank" 
-              rel="noreferrer"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-xs font-mono text-slate-300 hover:text-white hover:border-cyan-500/40 transition shadow-sm"
-            >
-              <span>GitHub Repo</span>
-              <ExternalLink className="w-3 h-3 text-slate-500" />
-            </a>
-          </div>
 
         </div>
       </header>
