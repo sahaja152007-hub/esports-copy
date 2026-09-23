@@ -1,8 +1,16 @@
-import React from 'react';
-import { Table, Trophy, Play, CheckCircle2, Sparkles, Calendar, Clock, Gamepad2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Table, Trophy, Play, CheckCircle2, Sparkles, Calendar, Clock, Gamepad2, Filter } from 'lucide-react';
 import { playSound } from '../utils/sound';
 
 export default function RoundRobinView({ matches, teams, onSelectMatch, onSimulateMatch, onSimulateAll }) {
+  const [filter, setFilter] = useState('all'); // 'all' | 'upcoming' | 'completed'
+
+  const filteredMatches = matches.filter(m => {
+    if (filter === 'upcoming') return m.status === 'UPCOMING';
+    if (filter === 'completed') return m.status === 'COMPLETED';
+    return true;
+  });
+
   // Calculate Standings Table from matches
   const standings = teams.map(team => {
     let played = 0;
@@ -51,6 +59,11 @@ export default function RoundRobinView({ matches, teams, onSelectMatch, onSimula
   // Sort by Points descending, then by diff
   standings.sort((a, b) => b.points - a.points || b.diff - a.diff);
 
+  const formatMatchName = (id, num, index) => {
+    if (num) return num.toUpperCase();
+    return `MATCH ${String(index + 1).padStart(2, '0')}`;
+  };
+
   return (
     <div className="space-y-8">
       {/* Standings Table Section */}
@@ -72,7 +85,7 @@ export default function RoundRobinView({ matches, teams, onSelectMatch, onSimula
             <thead>
               <tr className="border-b border-white/10 text-slate-400 uppercase font-orbitron">
                 <th className="py-3 px-4">Rank</th>
-                <th className="py-3 px-4">Team</th>
+                <th className="py-3 px-4">Full Team Name</th>
                 <th className="py-3 px-4 text-center">Played</th>
                 <th className="py-3 px-4 text-center">Wins</th>
                 <th className="py-3 px-4 text-center">Losses</th>
@@ -86,12 +99,11 @@ export default function RoundRobinView({ matches, teams, onSelectMatch, onSimula
                   <td className="py-3.5 px-4 font-bold">
                     {idx === 0 ? <span className="text-amber-400">🥇 1st</span> : `#${idx + 1}`}
                   </td>
-                  <td className="py-3.5 px-4 font-orbitron font-bold text-white flex items-center gap-2">
-                    <span className="text-base">{item.team.logo}</span>
-                    <span>{item.team.name}</span>
-                    <span className="text-[10px] text-slate-400 font-mono">[{item.team.tag}]</span>
+                  <td className="py-3.5 px-4 font-orbitron font-bold text-white flex items-center gap-2.5">
+                    <span className="text-xl p-1 rounded-lg bg-black/40 border border-white/10">{item.team.logo}</span>
+                    <span className="text-sm font-bold">{item.team.name}</span>
                   </td>
-                  <td className="py-3.5 px-4 text-center text-slate-300">{item.played}</td>
+                  <td className="py-3.5 px-4 text-center text-slate-300 font-bold">{item.played}</td>
                   <td className="py-3.5 px-4 text-center text-emerald-400 font-bold">{item.wins}</td>
                   <td className="py-3.5 px-4 text-center text-pink-400 font-bold">{item.losses}</td>
                   <td className="py-3.5 px-4 text-center text-slate-400">{item.diff > 0 ? `+${item.diff}` : item.diff}</td>
@@ -103,83 +115,145 @@ export default function RoundRobinView({ matches, teams, onSelectMatch, onSimula
         </div>
       </div>
 
-      {/* Fixtures Schedule Grid */}
+      {/* Fixtures Schedule Section */}
       <div className="space-y-4">
-        <h3 className="font-orbitron font-bold text-lg text-white flex items-center gap-2">
-          <Table className="w-5 h-5 text-cyan-400" /> Structured League Fixtures ({matches.length} Matches)
-        </h3>
-        
+        <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900/80 border border-white/10 cyber-card">
+          <h3 className="font-orbitron font-bold text-lg text-white flex items-center gap-2">
+            <Table className="w-5 h-5 text-cyan-400" /> Structured League Fixtures ({matches.length} Matches)
+          </h3>
+
+          {/* Status Filter Buttons */}
+          <div className="flex items-center gap-1 bg-black/50 p-1 rounded-xl border border-white/10 text-xs font-orbitron">
+            <button 
+              onClick={() => setFilter('all')}
+              className={`px-3 py-1.5 rounded-lg transition font-bold ${filter === 'all' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
+            >
+              All ({matches.length})
+            </button>
+            <button 
+              onClick={() => setFilter('upcoming')}
+              className={`px-3 py-1.5 rounded-lg transition font-bold ${filter === 'upcoming' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
+            >
+              Upcoming ({matches.filter(m => m.status === 'UPCOMING').length})
+            </button>
+            <button 
+              onClick={() => setFilter('completed')}
+              className={`px-3 py-1.5 rounded-lg transition font-bold ${filter === 'completed' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
+            >
+              Completed ({matches.filter(m => m.status === 'COMPLETED').length})
+            </button>
+          </div>
+        </div>
+
+        {/* Matches Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {matches.map((match, i) => {
-            const winnerTeam = match.winnerId === match.team1?.id ? match.team1 : (match.winnerId === match.team2?.id ? match.team2 : null);
+          {filteredMatches.map((match, i) => {
+            const isTeam1Winner = match.winnerId === match.team1?.id;
+            const isTeam2Winner = match.winnerId === match.team2?.id;
+            const winnerTeam = isTeam1Winner ? match.team1 : (isTeam2Winner ? match.team2 : null);
 
             return (
               <div 
                 key={match.id}
                 onClick={() => { playSound('click'); onSelectMatch(match); }}
-                className="p-4 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-500/50 cursor-pointer transition space-y-3 cyber-card"
+                className="p-5 rounded-2xl bg-slate-900/80 border border-white/10 hover:border-cyan-500/50 cursor-pointer transition space-y-3.5 cyber-card"
               >
-                {/* Header Row: Match # + Game + Schedule + Status */}
-                <div className="flex justify-between items-center text-xs font-mono border-b border-white/10 pb-2">
+                {/* 1. MATCH HEADER */}
+                <div className="flex justify-between items-center text-xs font-mono border-b border-white/10 pb-2.5">
+                  <span className="font-orbitron font-black text-sm text-cyan-300 tracking-wider">
+                    {formatMatchName(match.id, match.matchNum, i)}
+                  </span>
+
                   <div className="flex items-center gap-2">
-                    <span className="font-orbitron font-bold text-cyan-300">{match.matchNum || `MATCH #${i+1}`}</span>
-                    <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-white/10 flex items-center gap-1 font-semibold text-[11px]">
-                      <Gamepad2 className="w-3 h-3 text-cyan-400" /> {match.game || 'FIFA 26'}
+                    {match.status === 'COMPLETED' && (
+                      <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono text-[11px] font-bold border border-emerald-500/30 flex items-center gap-1">
+                        <CheckCircle2 className="w-3 h-3" /> Completed
+                      </span>
+                    )}
+                    {match.status === 'UPCOMING' && (
+                      <span className="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-mono text-[11px] font-semibold border border-cyan-500/30">
+                        Upcoming
+                      </span>
+                    )}
+                    {match.status !== 'COMPLETED' && (
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          playSound('generate');
+                          onSimulateMatch(match.id);
+                        }}
+                        className="px-2.5 py-0.5 rounded-lg bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500/40 font-mono text-[11px] font-bold flex items-center gap-1 transition"
+                      >
+                        <Play className="w-2.5 h-2.5" /> Sim
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                {/* 2. MATCHUP: TEAM A VS TEAM B */}
+                <div className="p-3.5 rounded-xl bg-black/50 border border-white/5 space-y-3">
+                  {/* Team A */}
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span className="text-2xl shrink-0 p-1 rounded-lg bg-slate-900 border border-white/10">
+                        {match.team1?.logo || '🛡️'}
+                      </span>
+                      <div className="font-orbitron font-bold text-sm text-slate-100 truncate">
+                        {match.team1?.name || 'TBD'}
+                      </div>
+                    </div>
+                    <span className="font-mono text-base font-bold text-white px-2.5 py-0.5 rounded-lg bg-slate-900 border border-white/10 shrink-0">
+                      {match.score1}
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-2 text-slate-400 text-[11px]">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3 text-slate-500" /> {match.date || 'Oct 15'}
+                  {/* VS Divider */}
+                  <div className="flex items-center justify-center gap-2 my-1">
+                    <div className="h-px bg-white/10 flex-1"></div>
+                    <span className="px-2 py-0.5 rounded bg-cyan-950 text-cyan-400 font-orbitron font-black text-[10px] tracking-widest border border-cyan-500/30">
+                      VS
                     </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3 text-slate-500" /> {match.time || '18:00 IST'}
+                    <div className="h-px bg-white/10 flex-1"></div>
+                  </div>
+
+                  {/* Team B */}
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span className="text-2xl shrink-0 p-1 rounded-lg bg-slate-900 border border-white/10">
+                        {match.team2?.logo || '⚔️'}
+                      </span>
+                      <div className="font-orbitron font-bold text-sm text-slate-100 truncate">
+                        {match.team2?.name || 'TBD'}
+                      </div>
+                    </div>
+                    <span className="font-mono text-base font-bold text-white px-2.5 py-0.5 rounded-lg bg-slate-900 border border-white/10 shrink-0">
+                      {match.score2}
                     </span>
                   </div>
                 </div>
 
-                {/* Teams Row */}
-                <div className="flex items-center justify-between gap-2 py-1">
-                  <div className="flex items-center gap-2 min-w-0 flex-1">
-                    <span className="text-xl">{match.team1?.logo || '🛡️'}</span>
-                    <span className="font-orbitron text-xs font-bold text-white truncate">{match.team1?.name}</span>
-                    <span className="text-[10px] text-slate-400 font-mono">[{match.team1?.tag}]</span>
+                {/* 3. METADATA: GAME, DATE, TIME */}
+                <div className="grid grid-cols-3 gap-1.5 text-[11px] font-mono text-slate-400 bg-slate-950/60 p-2 rounded-lg border border-white/5 text-center">
+                  <div className="flex flex-col items-center">
+                    <span className="text-[9px] text-slate-500 uppercase">Game</span>
+                    <span className="text-cyan-300 font-semibold truncate max-w-full">🎮 {match.game || 'FIFA 26'}</span>
                   </div>
-
-                  <div className="px-3 py-1 rounded bg-black/60 border border-white/10 font-mono text-sm font-bold text-cyan-300">
-                    {match.status === 'COMPLETED' ? `${match.score1} : ${match.score2}` : 'VS'}
+                  <div className="flex flex-col items-center border-x border-white/5">
+                    <span className="text-[9px] text-slate-500 uppercase">Date</span>
+                    <span className="text-slate-200 font-medium">📅 {match.date || '25 Sep 2026'}</span>
                   </div>
-
-                  <div className="flex items-center gap-2 min-w-0 flex-1 justify-end text-right">
-                    <span className="text-[10px] text-slate-400 font-mono">[{match.team2?.tag}]</span>
-                    <span className="font-orbitron text-xs font-bold text-white truncate">{match.team2?.name}</span>
-                    <span className="text-xl">{match.team2?.logo || '⚔️'}</span>
+                  <div className="flex flex-col items-center">
+                    <span className="text-[9px] text-slate-500 uppercase">Time</span>
+                    <span className="text-amber-300 font-medium">⏰ {match.time || '6:00 PM'}</span>
                   </div>
                 </div>
 
-                {/* Footer Status & Result */}
-                <div className="flex justify-between items-center text-[11px] font-mono pt-2 border-t border-white/5">
-                  {winnerTeam ? (
-                    <span className="text-emerald-400 font-bold flex items-center gap-1">
-                      <CheckCircle2 className="w-3.5 h-3.5" /> Winner: {winnerTeam.name}
-                    </span>
-                  ) : (
-                    <span className="text-slate-500 italic">Status: {match.status}</span>
-                  )}
-
-                  {match.status !== 'COMPLETED' && (
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        playSound('generate');
-                        onSimulateMatch(match.id);
-                      }}
-                      className="px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500/40 font-mono text-xs flex items-center gap-1 transition"
-                    >
-                      <Play className="w-3 h-3" /> Sim Match
-                    </button>
-                  )}
-                </div>
+                {/* 4. WINNER BANNER */}
+                {winnerTeam && (
+                  <div className="pt-2 border-t border-white/10 text-center text-xs font-mono text-emerald-400 flex items-center justify-center gap-1.5 font-bold">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Winner: <strong className="text-white font-orbitron">{winnerTeam.name}</strong>
+                  </div>
+                )}
               </div>
             );
           })}
