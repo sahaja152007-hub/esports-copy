@@ -24,35 +24,35 @@ export default function BracketView({ matches, onSelectMatch, onSimulateMatch, o
   return (
     <div className="space-y-6">
       {/* Bracket Header & Filter Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900/90 border border-white/10 cyber-card">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900/90 border border-white/10 cyber-card">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+          <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 shrink-0">
             <Trophy className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-orbitron font-bold text-lg text-white">Single Elimination Tournament Bracket</h3>
+            <h3 className="font-orbitron font-bold text-base sm:text-lg text-white">Single Elimination Bracket</h3>
             <p className="text-xs text-slate-400">Clear stage progression, matchup details, schedule, and results.</p>
           </div>
         </div>
 
-        {/* Status Filter Buttons */}
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 bg-black/50 p-1 rounded-xl border border-white/10 text-xs font-orbitron">
+        {/* Status Filter Buttons & Action */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full lg:w-auto">
+          <div className="flex items-center justify-between sm:justify-start gap-1 bg-black/50 p-1 rounded-xl border border-white/10 text-[11px] sm:text-xs font-orbitron w-full sm:w-auto">
             <button 
               onClick={() => setFilter('all')}
-              className={`px-3 py-1.5 rounded-lg transition font-bold ${filter === 'all' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
+              className={`flex-1 sm:flex-none px-2.5 py-1.5 rounded-lg transition font-bold text-center ${filter === 'all' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
             >
-              All Matches ({matches.length})
+              All ({matches.length})
             </button>
             <button 
               onClick={() => setFilter('upcoming')}
-              className={`px-3 py-1.5 rounded-lg transition font-bold ${filter === 'upcoming' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
+              className={`flex-1 sm:flex-none px-2.5 py-1.5 rounded-lg transition font-bold text-center ${filter === 'upcoming' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
             >
               Upcoming ({matches.filter(m => m.status === 'UPCOMING').length})
             </button>
             <button 
               onClick={() => setFilter('completed')}
-              className={`px-3 py-1.5 rounded-lg transition font-bold ${filter === 'completed' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
+              className={`flex-1 sm:flex-none px-2.5 py-1.5 rounded-lg transition font-bold text-center ${filter === 'completed' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
             >
               Completed ({matches.filter(m => m.status === 'COMPLETED').length})
             </button>
@@ -60,7 +60,7 @@ export default function BracketView({ matches, onSelectMatch, onSimulateMatch, o
 
           <button 
             onClick={onSimulateAll}
-            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-orbitron font-bold text-xs hover:from-cyan-400 hover:to-blue-500 transition shadow-lg flex items-center gap-2"
+            className="w-full sm:w-auto justify-center px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-orbitron font-bold text-xs hover:from-cyan-400 hover:to-blue-500 transition shadow-lg flex items-center gap-2 shrink-0 whitespace-nowrap"
           >
             <Sparkles className="w-4 h-4 text-black" /> Auto-Simulate
           </button>

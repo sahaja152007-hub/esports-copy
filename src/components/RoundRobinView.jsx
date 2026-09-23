@@ -67,14 +67,14 @@ export default function RoundRobinView({ matches, teams, onSelectMatch, onSimula
   return (
     <div className="space-y-8">
       {/* Standings Table Section */}
-      <div className="p-6 rounded-2xl bg-slate-900/80 border border-white/10 cyber-card">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="font-orbitron font-bold text-lg text-white flex items-center gap-2">
-            <Trophy className="w-5 h-5 text-amber-400" /> Round-Robin League Standings
+      <div className="p-4 sm:p-6 rounded-2xl bg-slate-900/80 border border-white/10 cyber-card">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+          <h3 className="font-orbitron font-bold text-base sm:text-lg text-white flex items-center gap-2">
+            <Trophy className="w-5 h-5 text-amber-400 shrink-0" /> Round-Robin League Standings
           </h3>
           <button 
             onClick={onSimulateAll}
-            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-orbitron font-bold text-xs hover:from-cyan-400 hover:to-blue-500 transition shadow-lg flex items-center gap-2"
+            className="w-full sm:w-auto justify-center px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-orbitron font-bold text-xs hover:from-cyan-400 hover:to-blue-500 transition shadow-lg flex items-center gap-2 shrink-0 whitespace-nowrap"
           >
             <Sparkles className="w-4 h-4 text-black" /> Auto-Simulate League
           </button>
@@ -117,28 +117,28 @@ export default function RoundRobinView({ matches, teams, onSelectMatch, onSimula
 
       {/* Fixtures Schedule Section */}
       <div className="space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900/80 border border-white/10 cyber-card">
-          <h3 className="font-orbitron font-bold text-lg text-white flex items-center gap-2">
-            <Table className="w-5 h-5 text-cyan-400" /> Structured League Fixtures ({matches.length} Matches)
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900/80 border border-white/10 cyber-card">
+          <h3 className="font-orbitron font-bold text-base sm:text-lg text-white flex items-center gap-2">
+            <Table className="w-5 h-5 text-cyan-400 shrink-0" /> League Fixtures ({matches.length} Matches)
           </h3>
 
           {/* Status Filter Buttons */}
-          <div className="flex items-center gap-1 bg-black/50 p-1 rounded-xl border border-white/10 text-xs font-orbitron">
+          <div className="flex items-center justify-between sm:justify-start gap-1 bg-black/50 p-1 rounded-xl border border-white/10 text-[11px] sm:text-xs font-orbitron w-full sm:w-auto">
             <button 
               onClick={() => setFilter('all')}
-              className={`px-3 py-1.5 rounded-lg transition font-bold ${filter === 'all' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
+              className={`flex-1 sm:flex-none px-2.5 py-1.5 rounded-lg transition font-bold text-center ${filter === 'all' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
             >
               All ({matches.length})
             </button>
             <button 
               onClick={() => setFilter('upcoming')}
-              className={`px-3 py-1.5 rounded-lg transition font-bold ${filter === 'upcoming' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
+              className={`flex-1 sm:flex-none px-2.5 py-1.5 rounded-lg transition font-bold text-center ${filter === 'upcoming' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
             >
               Upcoming ({matches.filter(m => m.status === 'UPCOMING').length})
             </button>
             <button 
               onClick={() => setFilter('completed')}
-              className={`px-3 py-1.5 rounded-lg transition font-bold ${filter === 'completed' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
+              className={`flex-1 sm:flex-none px-2.5 py-1.5 rounded-lg transition font-bold text-center ${filter === 'completed' ? 'bg-cyan-500 text-black shadow' : 'text-slate-400 hover:text-white'}`}
             >
               Completed ({matches.filter(m => m.status === 'COMPLETED').length})
             </button>
