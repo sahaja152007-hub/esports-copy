@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Trophy, Play, CheckCircle2, Sparkles } from 'lucide-react';
+import { Table, Trophy, Play, CheckCircle2, Sparkles, Calendar, Clock, Gamepad2 } from 'lucide-react';
 import { playSound } from '../utils/sound';
 
 export default function RoundRobinView({ matches, teams, onSelectMatch, onSimulateMatch, onSimulateAll }) {
@@ -61,7 +61,7 @@ export default function RoundRobinView({ matches, teams, onSelectMatch, onSimula
           </h3>
           <button 
             onClick={onSimulateAll}
-            className="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-orbitron font-bold text-xs hover:from-cyan-400 hover:to-blue-500 transition shadow-lg flex items-center gap-2"
+            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-orbitron font-bold text-xs hover:from-cyan-400 hover:to-blue-500 transition shadow-lg flex items-center gap-2"
           >
             <Sparkles className="w-4 h-4 text-black" /> Auto-Simulate League
           </button>
@@ -106,47 +106,83 @@ export default function RoundRobinView({ matches, teams, onSelectMatch, onSimula
       {/* Fixtures Schedule Grid */}
       <div className="space-y-4">
         <h3 className="font-orbitron font-bold text-lg text-white flex items-center gap-2">
-          <Table className="w-5 h-5 text-cyan-400" /> League Match Schedule (10 Matches)
+          <Table className="w-5 h-5 text-cyan-400" /> Structured League Fixtures ({matches.length} Matches)
         </h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {matches.map((match, i) => (
-            <div 
-              key={match.id}
-              onClick={() => { playSound('click'); onSelectMatch(match); }}
-              className="p-4 rounded-xl bg-slate-900/70 border border-white/10 hover:border-cyan-500/40 cursor-pointer transition flex items-center justify-between"
-            >
-              <div className="flex items-center gap-3">
-                <span className="text-xs font-mono px-2 py-1 rounded bg-slate-800 text-slate-400">Match #{i+1}</span>
-                <div>
-                  <div className="font-orbitron text-sm font-bold text-white flex items-center gap-2">
-                    <span>{match.team1?.logo} {match.team1?.name}</span>
-                    <span className="text-xs text-slate-500">vs</span>
-                    <span>{match.team2?.logo} {match.team2?.name}</span>
+          {matches.map((match, i) => {
+            const winnerTeam = match.winnerId === match.team1?.id ? match.team1 : (match.winnerId === match.team2?.id ? match.team2 : null);
+
+            return (
+              <div 
+                key={match.id}
+                onClick={() => { playSound('click'); onSelectMatch(match); }}
+                className="p-4 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-500/50 cursor-pointer transition space-y-3 cyber-card"
+              >
+                {/* Header Row: Match # + Game + Schedule + Status */}
+                <div className="flex justify-between items-center text-xs font-mono border-b border-white/10 pb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="font-orbitron font-bold text-cyan-300">{match.matchNum || `MATCH #${i+1}`}</span>
+                    <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-white/10 flex items-center gap-1 font-semibold text-[11px]">
+                      <Gamepad2 className="w-3 h-3 text-cyan-400" /> {match.game || 'FIFA 26'}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-slate-400 text-[11px]">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="w-3 h-3 text-slate-500" /> {match.date || 'Oct 15'}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-slate-500" /> {match.time || '18:00 IST'}
+                    </span>
                   </div>
                 </div>
-              </div>
 
-              <div className="flex items-center gap-3">
-                {match.status === 'COMPLETED' ? (
-                  <span className="font-mono text-cyan-300 font-bold bg-cyan-950/60 px-3 py-1 rounded border border-cyan-500/30">
-                    {match.score1} : {match.score2}
-                  </span>
-                ) : (
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      playSound('generate');
-                      onSimulateMatch(match.id);
-                    }}
-                    className="px-3 py-1 rounded bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500/40 font-mono text-xs flex items-center gap-1 transition"
-                  >
-                    <Play className="w-3 h-3" /> Sim
-                  </button>
-                )}
+                {/* Teams Row */}
+                <div className="flex items-center justify-between gap-2 py-1">
+                  <div className="flex items-center gap-2 min-w-0 flex-1">
+                    <span className="text-xl">{match.team1?.logo || '🛡️'}</span>
+                    <span className="font-orbitron text-xs font-bold text-white truncate">{match.team1?.name}</span>
+                    <span className="text-[10px] text-slate-400 font-mono">[{match.team1?.tag}]</span>
+                  </div>
+
+                  <div className="px-3 py-1 rounded bg-black/60 border border-white/10 font-mono text-sm font-bold text-cyan-300">
+                    {match.status === 'COMPLETED' ? `${match.score1} : ${match.score2}` : 'VS'}
+                  </div>
+
+                  <div className="flex items-center gap-2 min-w-0 flex-1 justify-end text-right">
+                    <span className="text-[10px] text-slate-400 font-mono">[{match.team2?.tag}]</span>
+                    <span className="font-orbitron text-xs font-bold text-white truncate">{match.team2?.name}</span>
+                    <span className="text-xl">{match.team2?.logo || '⚔️'}</span>
+                  </div>
+                </div>
+
+                {/* Footer Status & Result */}
+                <div className="flex justify-between items-center text-[11px] font-mono pt-2 border-t border-white/5">
+                  {winnerTeam ? (
+                    <span className="text-emerald-400 font-bold flex items-center gap-1">
+                      <CheckCircle2 className="w-3.5 h-3.5" /> Winner: {winnerTeam.name}
+                    </span>
+                  ) : (
+                    <span className="text-slate-500 italic">Status: {match.status}</span>
+                  )}
+
+                  {match.status !== 'COMPLETED' && (
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        playSound('generate');
+                        onSimulateMatch(match.id);
+                      }}
+                      className="px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500/40 font-mono text-xs flex items-center gap-1 transition"
+                    >
+                      <Play className="w-3 h-3" /> Sim Match
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

@@ -193,11 +193,19 @@ export default function TeamFixturePage() {
       const t4 = currentTeams[3] || null;
       const t5 = currentTeams[4] || null;
 
+      const games = ['Valorant', 'FIFA 26', 'Minecraft BedWars'];
+      const dates = ['Oct 15, 2026', 'Oct 16, 2026', 'Oct 17, 2026', 'Oct 18, 2026'];
+      const times = ['16:00 IST', '18:00 IST', '20:00 IST'];
+
       const newMatches = [
         {
           id: 'm1',
+          matchNum: 'MATCH #1',
           round: 1,
           roundName: 'Quarterfinal (Play-In)',
+          game: 'Valorant 5v5',
+          date: 'Oct 15, 2026',
+          time: '17:00 IST',
           team1: t4,
           team2: t5,
           score1: 0,
@@ -208,8 +216,12 @@ export default function TeamFixturePage() {
         },
         {
           id: 'm2',
+          matchNum: 'MATCH #2',
           round: 2,
           roundName: 'Semifinal 1',
+          game: 'FIFA 26',
+          date: 'Oct 15, 2026',
+          time: '19:00 IST',
           team1: t1,
           team2: t2,
           score1: 0,
@@ -220,8 +232,12 @@ export default function TeamFixturePage() {
         },
         {
           id: 'm3',
+          matchNum: 'MATCH #3',
           round: 2,
           roundName: 'Semifinal 2',
+          game: 'Minecraft BedWars',
+          date: 'Oct 16, 2026',
+          time: '17:00 IST',
           team1: t3,
           team2: null, // Will be filled by winner of M1
           score1: 0,
@@ -232,8 +248,12 @@ export default function TeamFixturePage() {
         },
         {
           id: 'm4',
+          matchNum: 'MATCH #4',
           round: 3,
           roundName: '3rd Place Bronze Match',
+          game: 'FIFA 26',
+          date: 'Oct 16, 2026',
+          time: '19:00 IST',
           team1: null, // Loser M2
           team2: null, // Loser M3
           score1: 0,
@@ -244,8 +264,12 @@ export default function TeamFixturePage() {
         },
         {
           id: 'm5',
+          matchNum: 'MATCH #5',
           round: 3,
           roundName: 'Grand Final Championship',
+          game: 'Valorant 5v5',
+          date: 'Oct 17, 2026',
+          time: '20:00 IST',
           team1: null, // Winner M2
           team2: null, // Winner M3
           score1: 0,
@@ -262,13 +286,20 @@ export default function TeamFixturePage() {
       const list = [...currentTeams];
       const rrMatches = [];
       let matchCount = 1;
+      const games = ['FIFA 26', 'Minecraft BedWars', 'Valorant 5v5'];
+      const dates = ['Oct 15, 2026', 'Oct 16, 2026', 'Oct 17, 2026', 'Oct 18, 2026'];
+      const times = ['16:00 IST', '18:00 IST', '20:00 IST'];
 
       for (let i = 0; i < list.length; i++) {
         for (let j = i + 1; j < list.length; j++) {
           rrMatches.push({
             id: `rr-${matchCount}`,
+            matchNum: `MATCH #${matchCount}`,
             round: 1,
             roundName: `Match #${matchCount}`,
+            game: games[(matchCount - 1) % games.length],
+            date: dates[(matchCount - 1) % dates.length],
+            time: times[(matchCount - 1) % times.length],
             team1: list[i],
             team2: list[j],
             score1: 0,

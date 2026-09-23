@@ -4,7 +4,7 @@ import { Trophy, Swords, Flame, Users, Radio, ChevronRight, Sparkles, Globe } fr
 export default function HomePage({ onNavigateToFixtures }) {
   // Countdown state
   const [timeLeft, setTimeLeft] = useState({ days: 12, hours: 8, minutes: 45, seconds: 30 });
-  const [activeTab, setActiveTab] = useState('shooter');
+  const [activeTab, setActiveTab] = useState('fifa');
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -17,29 +17,29 @@ export default function HomePage({ onNavigateToFixtures }) {
   }, []);
 
   const gameModes = {
-    shooter: {
-      title: '5v5 TACTICAL SHOOTER',
-      subtitle: 'Precision Aim & Agent Abilities',
-      desc: 'High-stakes tactical battle where economy, precise gunplay, and synchronized ability deployment determine supremacy.',
-      icon: '🎯',
-      stats: { teams: 64, map: 'Haven / Ascent', mode: 'Best of 3' },
-      accent: 'border-cyan-500 text-cyan-400 bg-cyan-950/20'
+    fifa: {
+      title: 'FIFA',
+      subtitle: 'Competitive Football & Ultimate Team Showdown',
+      desc: 'High-speed tactical football matches. Master precision passing, skill moves, tactical formations, and clutch penalty shootouts to dominate the pitch.',
+      icon: '⚽',
+      stats: { teams: '32 Players', map: 'Santiago Bernabéu', mode: 'Knockout / BO3' },
+      accent: 'border-emerald-500 text-emerald-400 bg-emerald-950/20'
     },
-    royale: {
-      title: 'BATTLE ROYALE ARENA',
-      subtitle: 'Last Squad Standing Wins',
-      desc: '20 squads drop onto an expanding storm island. Survival instincts, high-tier loot acquisition, and high-ground control are vital.',
-      icon: '🔥',
-      stats: { teams: 40, map: 'Apex Island', mode: 'Point Matrix' },
-      accent: 'border-pink-500 text-pink-400 bg-pink-950/20'
-    },
-    moba: {
-      title: 'MOBA SHOWDOWN',
-      subtitle: '5v5 Nexus Core Assault',
-      desc: 'Macro strategy, lane dominance, objective control over dragon pits, and epic late-game teamfights.',
-      icon: '⚔️',
-      stats: { teams: 24, map: 'Nexus Rift', mode: 'Best of 5' },
+    minecraft: {
+      title: 'MINECRAFT',
+      subtitle: 'BedWars & Survival PvP Challenges',
+      desc: 'Resource management, speed-building, and tactical PvP combat. Squads construct defensive fortresses, manage island economies, and eliminate opposing beds to survive.',
+      icon: '⛏️',
+      stats: { teams: '16 Squads', map: 'Craft Arena', mode: 'BedWars / Survival' },
       accent: 'border-amber-500 text-amber-400 bg-amber-950/20'
+    },
+    valorant: {
+      title: 'VALORANT',
+      subtitle: '5v5 Tactical FPS & Agent Abilities',
+      desc: 'Precise gunplay meets hyper-tuned agent utility. Synchronize team entry executes, spike plant defenses, and strategic mid-round calls across 24-round regulation matches.',
+      icon: '🎯',
+      stats: { teams: '64 Teams', map: 'Haven / Ascent', mode: 'Best of 3 (BO3)' },
+      accent: 'border-cyan-500 text-cyan-400 bg-cyan-950/20'
     }
   };
 
@@ -55,7 +55,7 @@ export default function HomePage({ onNavigateToFixtures }) {
         <div className="relative z-10 max-w-4xl mx-auto space-y-8">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-mono text-xs font-semibold uppercase tracking-widest glow-cyan">
-            <Radio className="w-3.5 h-3.5 text-cyan-400 animate-pulse" /> LIVE GLOBAL TOURNAMENT SEASON 2026
+            <Radio className="w-3.5 h-3.5 text-cyan-400 animate-pulse" /> NMIMS 2026
           </div>
 
           {/* Main Title */}
@@ -199,15 +199,15 @@ export default function HomePage({ onNavigateToFixtures }) {
 
           <div className="p-5 rounded-xl bg-black/40 border border-white/10 space-y-3 font-mono text-xs">
             <div className="flex justify-between py-1 border-b border-white/10">
-              <span className="text-slate-400">Max Teams:</span>
-              <span className="text-white font-bold">{gameModes[activeTab].stats.teams} Squads</span>
+              <span className="text-slate-400">Tournament Scale:</span>
+              <span className="text-white font-bold">{gameModes[activeTab].stats.teams}</span>
             </div>
             <div className="flex justify-between py-1 border-b border-white/10">
-              <span className="text-slate-400">Featured Map:</span>
+              <span className="text-slate-400">Official Arena:</span>
               <span className="text-cyan-300 font-bold">{gameModes[activeTab].stats.map}</span>
             </div>
             <div className="flex justify-between py-1">
-              <span className="text-slate-400">Format:</span>
+              <span className="text-slate-400">Match Format:</span>
               <span className="text-amber-300 font-bold">{gameModes[activeTab].stats.mode}</span>
             </div>
           </div>
