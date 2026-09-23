@@ -117,7 +117,7 @@ export default function HomePage({ onNavigateToFixtures }) {
                 <Sparkles className="w-4 h-4" /> CHAMPIONSHIP REWARDS
               </span>
               <h2 className="font-orbitron font-black text-4xl md:text-5xl text-white">
-                $250,000 <span className="text-cyan-400">PRIZE POOL</span>
+                ₹1,00,000 <span className="text-cyan-400">PRIZE POOL</span>
               </h2>
               <p className="text-slate-300 text-sm leading-relaxed">
                 Competing teams fight for glory, official tournament trophies, and cash prize distribution across top tier standings.
@@ -126,15 +126,15 @@ export default function HomePage({ onNavigateToFixtures }) {
               <div className="grid grid-cols-3 gap-3 pt-2">
                 <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-center">
                   <div className="text-xs text-amber-300 font-mono">1ST PLACE</div>
-                  <div className="font-orbitron font-bold text-amber-400 text-lg">$125,000</div>
+                  <div className="font-orbitron font-bold text-amber-400 text-lg">₹50,000</div>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-400/10 border border-slate-400/30 text-center">
                   <div className="text-xs text-slate-300 font-mono">2ND PLACE</div>
-                  <div className="font-orbitron font-bold text-slate-200 text-lg">$75,000</div>
+                  <div className="font-orbitron font-bold text-slate-200 text-lg">₹30,000</div>
                 </div>
                 <div className="p-3 rounded-xl bg-amber-700/10 border border-amber-700/30 text-center">
                   <div className="text-xs text-amber-500 font-mono">3RD PLACE</div>
-                  <div className="font-orbitron font-bold text-amber-500 text-lg">$50,000</div>
+                  <div className="font-orbitron font-bold text-amber-500 text-lg">₹20,000</div>
                 </div>
               </div>
             </div>
@@ -148,13 +148,13 @@ export default function HomePage({ onNavigateToFixtures }) {
               </div>
               <div className="p-6 rounded-2xl bg-slate-900/80 border border-white/10 text-center cyber-card">
                 <Radio className="w-8 h-8 text-pink-400 mx-auto mb-2" />
-                <div className="font-orbitron font-black text-3xl text-white">50K+</div>
-                <div className="text-xs font-mono text-slate-400 uppercase mt-1">Peak Concurrent Viewers</div>
+                <div className="font-orbitron font-black text-3xl text-white">10K+</div>
+                <div className="text-xs font-mono text-slate-400 uppercase mt-1">Concurrent Viewers</div>
               </div>
               <div className="p-6 rounded-2xl bg-slate-900/80 border border-white/10 text-center cyber-card">
                 <Globe className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
-                <div className="font-orbitron font-black text-3xl text-white">32</div>
-                <div className="text-xs font-mono text-slate-400 uppercase mt-1">Global Regions</div>
+                <div className="font-orbitron font-black text-3xl text-white">5</div>
+                <div className="text-xs font-mono text-slate-400 uppercase mt-1">Campus Regions</div>
               </div>
               <div className="p-6 rounded-2xl bg-slate-900/80 border border-white/10 text-center cyber-card">
                 <Flame className="w-8 h-8 text-amber-400 mx-auto mb-2" />
@@ -214,20 +214,9 @@ export default function HomePage({ onNavigateToFixtures }) {
         </div>
       </section>
 
-      {/* Sponsors Footer Banner */}
-      <footer className="border-t border-white/10 pt-10 text-center text-xs text-slate-500 space-y-6">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-[10px] font-mono tracking-widest text-slate-400 uppercase mb-4">OFFICIAL SPONSORS & PARTNERS</div>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-70 font-orbitron font-bold text-sm tracking-widest text-slate-300">
-            <span>NVIDIA RTX</span>
-            <span>RAZER CHROMA</span>
-            <span>INTEL CORE i9</span>
-            <span>HYPERX</span>
-            <span>DISCORD</span>
-          </div>
-        </div>
-
-        <div className="pt-4 font-mono text-[11px] text-slate-600">
+      {/* Footer */}
+      <footer className="border-t border-white/10 pt-8 pb-4 text-center text-xs text-slate-500">
+        <div className="font-mono text-[11px] text-slate-600">
           © 2026 NEXUS ARENA ESPORTS. All rights reserved.
         </div>
       </footer>
