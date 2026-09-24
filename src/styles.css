@@ -1,0 +1,164 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * VEXA design system — frosted arena.
+ * Dark, competitive, glass panels. All colors in oklch.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-panel: var(--panel);
+  --color-panel2: var(--panel2);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent2: var(--accent2);
+  --color-live: var(--live);
+  --color-win: var(--win);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-display: "Space Grotesk", ui-sans-serif, sans-serif;
+  --font-body: "Inter", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.164 0.02 265.8);
+  --panel: oklch(0.218 0.032 262.5);
+  --panel2: oklch(0.26 0.037 261.8);
+  --foreground: oklch(0.951 0.017 264.5);
+  --muted: oklch(0.724 0.046 265.5);
+  --muted-foreground: oklch(0.724 0.046 265.5);
+  --accent: oklch(0.796 0.116 212.3);
+  --accent-foreground: oklch(0.164 0.02 265.8);
+  --accent2: oklch(0.733 0.138 271.7);
+  --border: oklch(0.337 0.056 266.8);
+  --input: oklch(0.337 0.056 266.8);
+  --ring: oklch(0.796 0.116 212.3);
+  --live: oklch(0.692 0.198 23.8);
+  --win: oklch(0.75 0.14 155);
+  --card: oklch(0.218 0.032 262.5);
+  --card-foreground: oklch(0.951 0.017 264.5);
+  --popover: oklch(0.218 0.032 262.5);
+  --popover-foreground: oklch(0.951 0.017 264.5);
+  --primary: oklch(0.796 0.116 212.3);
+  --primary-foreground: oklch(0.164 0.02 265.8);
+  --secondary: oklch(0.26 0.037 261.8);
+  --secondary-foreground: oklch(0.951 0.017 264.5);
+  --destructive: oklch(0.692 0.198 23.8);
+  --destructive-foreground: oklch(0.951 0.017 264.5);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--accent) 30%, transparent);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes slidein {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.7);
+  }
+}
+
+@keyframes shimmerMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@utility rise {
+  animation: rise 0.5s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+@utility slidein {
+  animation: slidein 0.4s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+@utility livedot {
+  animation: pulseDot 1.4s ease-in-out infinite;
+}
+
+@utility shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--accent) 0%,
+    var(--accent2) 30%,
+    var(--accent) 60%,
+    var(--accent) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerMove 6s linear infinite;
+}
+
+/* Glass panel surface used across cards, tables and rows. */
+@utility glass {
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--panel) 40%, transparent);
+  backdrop-filter: blur(24px);
+}
