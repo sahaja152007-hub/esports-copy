@@ -6,16 +6,16 @@ import { regions, tournaments } from "@/lib/vexa-data";
 export const Route = createFileRoute("/register")({
   head: () => ({
     meta: [
-      { title: "Register your team — VEXA" },
+      { title: "Register your team — NMIMS Inter-Campus Championship" },
       {
         name: "description",
         content:
-          "Enter your campus team into the VEXA circuit: roster, region and tournament selection in one short form.",
+          "Register your NMIMS campus team for the inter-campus esports tournament: roster, campus region and event selection.",
       },
-      { property: "og:title", content: "Register your team — VEXA" },
+      { property: "og:title", content: "Register your team — NMIMS Inter-Campus Championship" },
       {
         property: "og:description",
-        content: "Enter your campus team into the VEXA circuit in under five minutes.",
+        content: "Register your NMIMS campus team for the inter-campus tournament.",
       },
     ],
   }),
@@ -32,9 +32,9 @@ function RegisterPage() {
   return (
     <main className="pb-16">
       <PageHeader
-        eyebrow="Season 04 · Registration"
-        title="Register your team"
-        lead="Five starters, one substitute, one campus. Registration closes the Friday before each tournament's first round."
+        eyebrow="NMIMS 2026 · Registration"
+        title="Register your NMIMS Campus Team"
+        lead="Five starters, one substitute, one NMIMS campus. Registration closes the Friday before the tournament first round."
       />
 
       <section className="mx-auto grid max-w-7xl gap-6 px-6 py-4 lg:grid-cols-[1.2fr_.8fr]">
@@ -48,19 +48,19 @@ function RegisterPage() {
           <div className="grid gap-5 sm:grid-cols-2">
             <div className="sm:col-span-2">
               <label className={labelClass} htmlFor="team">
-                Team name
+                Team Name
               </label>
-              <input id="team" className={`${fieldClass} mt-2`} placeholder="Riverside Riptide" />
+              <input id="team" className={`${fieldClass} mt-2`} placeholder="NMIMS Mumbai Vanguard" />
             </div>
             <div>
               <label className={labelClass} htmlFor="campus">
-                Campus
+                NMIMS Campus
               </label>
-              <input id="campus" className={`${fieldClass} mt-2`} placeholder="Riverside University" />
+              <input id="campus" className={`${fieldClass} mt-2`} placeholder="NMIMS Mumbai Main Campus" />
             </div>
             <div>
               <label className={labelClass} htmlFor="region">
-                Region
+                Campus Region
               </label>
               <select id="region" className={`${fieldClass} mt-2`} defaultValue={regions[0]?.name}>
                 {regions.map((r) => (
@@ -88,24 +88,24 @@ function RegisterPage() {
             </div>
             <div>
               <label className={labelClass} htmlFor="captain">
-                Captain handle
+                Captain Handle
               </label>
               <input id="captain" className={`${fieldClass} mt-2`} placeholder="kairo" />
             </div>
             <div className="sm:col-span-2">
               <label className={labelClass} htmlFor="email">
-                Contact email
+                NMIMS Contact Email
               </label>
               <input
                 id="email"
                 type="email"
                 className={`${fieldClass} mt-2`}
-                placeholder="captain@campus.edu"
+                placeholder="captain@nmims.edu"
               />
             </div>
             <div className="sm:col-span-2">
               <label className={labelClass} htmlFor="roster">
-                Roster handles
+                Roster Handles
               </label>
               <textarea
                 id="roster"
@@ -120,12 +120,12 @@ function RegisterPage() {
             type="submit"
             className="mt-6 w-full rounded-lg bg-accent px-6 py-2.5 font-semibold text-accent-foreground transition hover:brightness-110 sm:w-auto"
           >
-            Submit registration
+            Submit Registration
           </button>
 
           {submitted && (
             <p className="mt-4 rounded-lg bg-accent/10 px-3.5 py-2.5 font-mono text-[11px] text-accent">
-              Registration captured. Seeding confirmation follows by email.
+              Registration captured! Seeding confirmation will be sent to your NMIMS email.
             </p>
           )}
         </form>
@@ -133,12 +133,12 @@ function RegisterPage() {
         <aside className="space-y-4">
           <div className="glass rounded-xl p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest text-accent">
-              What happens next
+              What Happens Next
             </div>
             <ol className="mt-3 space-y-2 text-[13px] text-muted">
-              <li>1 · Campus eligibility check on every listed player.</li>
-              <li>2 · Seeding into a group based on last season's rating.</li>
-              <li>3 · Fixture times published to your team page.</li>
+              <li>1 · Campus eligibility & NMIMS Student ID verification.</li>
+              <li>2 · Group seeding based on campus region.</li>
+              <li>3 · Fixture schedule published to your team page.</li>
             </ol>
           </div>
           <div className="glass rounded-xl p-5">
@@ -146,9 +146,9 @@ function RegisterPage() {
               Requirements
             </div>
             <ul className="mt-3 space-y-2 text-[13px] text-muted">
-              <li>Valid student ID for all six players.</li>
-              <li>Availability on weeknights from 18:00.</li>
-              <li>A team crest at 512×512 for broadcast.</li>
+              <li>Valid NMIMS Student ID for all six players.</li>
+              <li>Enrolled in an active NMIMS degree program.</li>
+              <li>Availability on inter-campus match nights.</li>
             </ul>
           </div>
         </aside>

@@ -7,16 +7,16 @@ import { rounds } from "@/lib/vexa-data";
 export const Route = createFileRoute("/fixtures")({
   head: () => ({
     meta: [
-      { title: "Fixtures & results — VEXA Winter Cup" },
+      { title: "Fixtures & Results — NMIMS Inter-Campus Championship" },
       {
         name: "description",
         content:
-          "Every Winter Cup match grouped by round: team crests, kick-off time, stage and live status.",
+          "Every NMIMS Inter-Campus match grouped by round: team crests, kick-off time, status and scores.",
       },
-      { property: "og:title", content: "Fixtures & results — VEXA Winter Cup" },
+      { property: "og:title", content: "Fixtures & Results — NMIMS Inter-Campus Championship" },
       {
         property: "og:description",
-        content: "Every match grouped by round, with times, stages and live status.",
+        content: "Every NMIMS match grouped by round, with times, status and scores.",
       },
     ],
   }),
@@ -39,9 +39,9 @@ function FixturesPage() {
   return (
     <main className="pb-16">
       <PageHeader
-        eyebrow="Winter Cup · Fixtures"
-        title="Every match, grouped by round"
-        lead="Kick-off times are shown in campus local time. Live matches update as maps close out."
+        eyebrow="NMIMS 2026 · Fixtures & Results"
+        title="NMIMS Inter-Campus Match Schedule"
+        lead="Kick-off times and map scores for all competing NMIMS campus teams."
       >
         <div className="mt-6 flex flex-wrap gap-2">
           {filters.map((f) => (

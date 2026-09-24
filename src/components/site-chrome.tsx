@@ -14,11 +14,11 @@ export function Logo({ size = "md" }: { size?: "sm" | "md" }) {
   return (
     <div className="flex items-center gap-2.5">
       <div
-        className={`grid ${box} place-items-center rounded-md bg-accent/15 ring-1 ring-accent/30`}
+        className={`grid ${box} place-items-center rounded-md bg-accent/20 ring-1 ring-accent/40`}
       >
-        <span className={`font-display ${text} font-bold text-accent`}>VX</span>
+        <span className={`font-display ${text} font-bold text-accent`}>NM</span>
       </div>
-      <span className="font-display text-[15px] font-bold tracking-tight">VEXA</span>
+      <span className="font-display text-[15px] font-bold tracking-tight">NMIMS <span className="text-accent">VEXA</span></span>
     </div>
   );
 }
@@ -30,8 +30,8 @@ export function SiteNav() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5">
         <Link to="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
           <Logo />
-          <span className="ml-1 hidden rounded bg-foreground/10 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-muted sm:inline">
-            Campus
+          <span className="ml-1 hidden rounded bg-accent/15 px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest text-accent sm:inline">
+            Inter-Campus
           </span>
         </Link>
 
@@ -101,7 +101,7 @@ export function SiteFooter() {
         <div>
           <Logo size="sm" />
           <p className="mt-2 max-w-[34ch] text-[12px] text-pretty text-muted">
-            The tournament layer for college esports. Built for campuses, watched by everyone.
+            The official NMIMS Inter-Campus Esports Tournament platform. Connecting campuses, crowning champions.
           </p>
         </div>
         <div className="flex flex-wrap gap-x-10 gap-y-2 font-mono text-[11px] uppercase tracking-wider text-muted">

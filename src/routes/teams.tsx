@@ -5,16 +5,16 @@ import { teams } from "@/lib/vexa-data";
 export const Route = createFileRoute("/teams")({
   head: () => ({
     meta: [
-      { title: "Teams — VEXA Winter Cup" },
+      { title: "Campus Teams — NMIMS Inter-Campus Championship" },
       {
         name: "description",
         content:
-          "All campus teams competing in the VEXA Winter Cup, with records, regions and roster leads.",
+          "All NMIMS campus teams competing in the inter-campus tournament, with records, campus regions and rosters.",
       },
-      { property: "og:title", content: "Teams — VEXA Winter Cup" },
+      { property: "og:title", content: "Campus Teams — NMIMS Inter-Campus Championship" },
       {
         property: "og:description",
-        content: "Campus teams, records, regions and roster leads.",
+        content: "NMIMS campus teams, records, campus regions and rosters.",
       },
     ],
   }),
@@ -25,9 +25,9 @@ function TeamsPage() {
   return (
     <main className="pb-16">
       <PageHeader
-        eyebrow="Winter Cup · Teams"
-        title="Sixteen campuses, one bracket"
-        lead="Each team fields five starters and one substitute. Open a team to see the full roster and match history."
+        eyebrow="NMIMS 2026 · Campus Teams"
+        title="NMIMS Campus Teams"
+        lead="Each NMIMS campus fields five starters and one substitute. Select a team to view their full roster and match history."
       />
 
       <section className="mx-auto max-w-7xl px-6 py-4">

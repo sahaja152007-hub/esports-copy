@@ -5,16 +5,16 @@ import { standings } from "@/lib/vexa-data";
 export const Route = createFileRoute("/standings")({
   head: () => ({
     meta: [
-      { title: "Standings — VEXA Winter Cup" },
+      { title: "Standings — NMIMS Inter-Campus Championship" },
       {
         name: "description",
         content:
-          "Live Winter Cup standings: wins, losses, map difference and points for every campus team.",
+          "Live NMIMS Inter-Campus standings: wins, losses, map difference and points for every campus team.",
       },
-      { property: "og:title", content: "Standings — VEXA Winter Cup" },
+      { property: "og:title", content: "Standings — NMIMS Inter-Campus Championship" },
       {
         property: "og:description",
-        content: "Wins, losses, map difference and points for every campus team.",
+        content: "Wins, losses, map difference and points for every NMIMS campus team.",
       },
     ],
   }),
@@ -25,9 +25,9 @@ function StandingsPage() {
   return (
     <main className="pb-16">
       <PageHeader
-        eyebrow="Winter Cup · Group A"
-        title="Standings"
-        lead="Three points per win. Top two teams in each group advance to the single-elimination bracket."
+        eyebrow="NMIMS 2026 · Group A"
+        title="NMIMS Campus Standings"
+        lead="Three points per win. Top teams in each group advance to the single-elimination playoff bracket."
       />
 
       <section className="mx-auto max-w-7xl px-6 py-4">
@@ -37,7 +37,7 @@ function StandingsPage() {
               <tr className="border-b border-border/70">
                 <th className="px-4 py-3">#</th>
                 <th className="px-4 py-3">Team</th>
-                <th className="px-4 py-3">Region</th>
+                <th className="px-4 py-3">Campus Region</th>
                 <th className="px-4 py-3 text-right">W</th>
                 <th className="px-4 py-3 text-right">L</th>
                 <th className="px-4 py-3 text-right">Diff</th>
@@ -74,7 +74,7 @@ function StandingsPage() {
           </table>
         </div>
         <p className="mt-3 font-mono text-[10px] uppercase tracking-wider text-muted">
-          Accent rank = qualified for playoffs
+          Accent rank = qualified for playoff bracket
         </p>
       </section>
     </main>

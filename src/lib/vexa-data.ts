@@ -26,10 +26,10 @@ export type Match = {
 
 export const teams: Team[] = [
   {
-    slug: "riverside-university",
-    name: "Riverside University",
-    short: "RU",
-    region: "Pacific West",
+    slug: "nmims-mumbai-knights",
+    name: "NMIMS Mumbai Knights",
+    short: "NMK",
+    region: "Mumbai Main Campus",
     game: "Valorant",
     wins: 6,
     losses: 1,
@@ -44,10 +44,10 @@ export const teams: Team[] = [
     ],
   },
   {
-    slug: "cedar-bay-institute",
-    name: "Cedar Bay Institute",
-    short: "CB",
-    region: "Great Lakes",
+    slug: "nmims-shirpur-cyberstorm",
+    name: "NMIMS Shirpur Cyberstorm",
+    short: "NSC",
+    region: "Shirpur Campus",
     game: "Valorant",
     wins: 5,
     losses: 2,
@@ -62,10 +62,10 @@ export const teams: Team[] = [
     ],
   },
   {
-    slug: "granite-hollow",
-    name: "Granite Hollow",
-    short: "GH",
-    region: "Mountain West",
+    slug: "nmims-navi-mumbai-strikers",
+    name: "NMIMS Navi Mumbai Strikers",
+    short: "NNS",
+    region: "Navi Mumbai Campus",
     game: "Valorant",
     wins: 4,
     losses: 3,
@@ -80,10 +80,10 @@ export const teams: Team[] = [
     ],
   },
   {
-    slug: "meridian-bay-college",
-    name: "Meridian Bay College",
-    short: "MB",
-    region: "Atlantic Coast",
+    slug: "nmims-hyderabad-vipers",
+    name: "NMIMS Hyderabad Vipers",
+    short: "NHV",
+    region: "Hyderabad Campus",
     game: "Valorant",
     wins: 1,
     losses: 6,
@@ -98,10 +98,10 @@ export const teams: Team[] = [
     ],
   },
   {
-    slug: "maple-crest",
-    name: "Maple Crest",
-    short: "MC",
-    region: "Heartland",
+    slug: "nmims-bengaluru-titans",
+    name: "NMIMS Bengaluru Titans",
+    short: "NBT",
+    region: "Bengaluru Campus",
     game: "Valorant",
     wins: 4,
     losses: 3,
@@ -124,7 +124,7 @@ export const teamByName = (name: string) =>
     short: name.slice(0, 2).toUpperCase(),
     name,
     slug: "",
-    region: "",
+    region: "NMIMS Campus",
   };
 
 export const rounds: { round: string; matches: Match[] }[] = [
@@ -134,8 +134,8 @@ export const rounds: { round: string; matches: Match[] }[] = [
       {
         id: "m1",
         round: "Round 1 · Group A",
-        a: "Riverside University",
-        b: "Cedar Bay Institute",
+        a: "NMIMS Mumbai Knights",
+        b: "NMIMS Shirpur Cyberstorm",
         date: "Feb 21",
         time: "19:00",
         status: "final",
@@ -144,8 +144,8 @@ export const rounds: { round: string; matches: Match[] }[] = [
       {
         id: "m2",
         round: "Round 1 · Group A",
-        a: "Granite Hollow",
-        b: "Meridian Bay College",
+        a: "NMIMS Navi Mumbai Strikers",
+        b: "NMIMS Hyderabad Vipers",
         date: "Feb 21",
         time: "21:00",
         status: "final",
@@ -159,8 +159,8 @@ export const rounds: { round: string; matches: Match[] }[] = [
       {
         id: "m3",
         round: "Round 2 · Group A",
-        a: "Riverside University",
-        b: "Granite Hollow",
+        a: "NMIMS Mumbai Knights",
+        b: "NMIMS Navi Mumbai Strikers",
         date: "Feb 22",
         time: "18:30",
         status: "scheduled",
@@ -168,8 +168,8 @@ export const rounds: { round: string; matches: Match[] }[] = [
       {
         id: "m4",
         round: "Round 2 · Group A",
-        a: "Maple Crest",
-        b: "Meridian Bay College",
+        a: "NMIMS Bengaluru Titans",
+        b: "NMIMS Hyderabad Vipers",
         date: "Feb 22",
         time: "20:30",
         status: "scheduled",
@@ -182,8 +182,8 @@ export const rounds: { round: string; matches: Match[] }[] = [
       {
         id: "m5",
         round: "Semifinal",
-        a: "Granite Hollow",
-        b: "Maple Crest",
+        a: "NMIMS Navi Mumbai Strikers",
+        b: "NMIMS Bengaluru Titans",
         date: "Feb 23",
         time: "18:00",
         status: "live",
@@ -192,8 +192,8 @@ export const rounds: { round: string; matches: Match[] }[] = [
       {
         id: "m6",
         round: "Semifinal",
-        a: "Riverside University",
-        b: "Cedar Bay Institute",
+        a: "NMIMS Mumbai Knights",
+        b: "NMIMS Shirpur Cyberstorm",
         date: "Feb 23",
         time: "20:00",
         status: "scheduled",
@@ -206,8 +206,8 @@ export const rounds: { round: string; matches: Match[] }[] = [
       {
         id: "m7",
         round: "Grand Final",
-        a: "Riverside University",
-        b: "Cedar Bay Institute",
+        a: "NMIMS Mumbai Knights",
+        b: "NMIMS Shirpur Cyberstorm",
         date: "Feb 25",
         time: "19:00",
         status: "scheduled",
@@ -218,24 +218,24 @@ export const rounds: { round: string; matches: Match[] }[] = [
 
 export const tournaments = [
   {
-    slug: "pacific-west-clash",
+    slug: "nmims-valorant-championship",
     game: "Valorant · Open",
-    name: "Pacific West Clash",
-    meta: "Feb 21 · 16 teams · $8,000",
+    name: "NMIMS Inter-Campus Valorant Clash",
+    meta: "Feb 21-25 · 16 Campus Teams · ₹50,000",
     status: "Registration open",
   },
   {
-    slug: "great-lakes-invitational",
-    game: "League of Legends",
-    name: "Great Lakes Invitational",
-    meta: "Feb 28 · 12 teams · $10,000",
+    slug: "nmims-fifa-cup",
+    game: "FC 24 / FIFA",
+    name: "NMIMS Campus Solo Showdown",
+    meta: "Feb 28 · 32 Players · ₹15,000",
     status: "Registration open",
   },
   {
-    slug: "atlantic-coast-cup",
+    slug: "nmims-rocket-league",
     game: "Rocket League",
-    name: "Atlantic Coast Cup",
-    meta: "Mar 6 · 8 teams · $6,000",
+    name: "NMIMS Inter-Campus 3v3 Cup",
+    meta: "Mar 6 · 12 Campus Teams · ₹20,000",
     status: "Registration open",
   },
 ];
@@ -243,28 +243,28 @@ export const tournaments = [
 export const rewards = [
   {
     place: "1st · Champion",
-    prize: "$18,000",
-    detail: "Winter Cup, all-region broadcast slot, and a season-long VEXA title.",
+    prize: "₹25,000",
+    detail: "NMIMS Championship Trophy, Gold Medals & All-Campus Bragging Rights.",
   },
   {
     place: "2nd · Runner-up",
-    prize: "$9,500",
-    detail: "Direct qualifier into the Summer Circuit and a featured team profile.",
+    prize: "₹15,000",
+    detail: "Silver Medals, Featured Team Profile & Inter-College Finals Slot.",
   },
   {
     place: "3rd · Semifinal",
-    prize: "$4,500",
-    detail: "Campus scholarship grant and coaching review by the VEXA panel.",
+    prize: "₹10,000",
+    detail: "Bronze Medals & Campus Esports Excellence Grant.",
   },
 ];
 
 export const regions = [
-  { name: "Pacific West", meta: "12 colleges · 48 teams" },
-  { name: "Great Lakes", meta: "9 colleges · 36 teams" },
-  { name: "Atlantic Coast", meta: "11 colleges · 42 teams" },
-  { name: "Heartland", meta: "8 colleges · 28 teams" },
-  { name: "Mountain West", meta: "7 colleges · 24 teams" },
-  { name: "Southeast", meta: "4 colleges · 18 teams" },
+  { name: "Mumbai Main Campus", meta: "12 Departments · 48 Players" },
+  { name: "Shirpur Campus", meta: "8 Departments · 36 Players" },
+  { name: "Navi Mumbai Campus", meta: "10 Departments · 42 Players" },
+  { name: "Bengaluru Campus", meta: "6 Departments · 28 Players" },
+  { name: "Hyderabad Campus", meta: "7 Departments · 24 Players" },
+  { name: "Indore Campus", meta: "5 Departments · 20 Players" },
 ];
 
 export const standings = [...teams].sort((a, b) => b.points - a.points);

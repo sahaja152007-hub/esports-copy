@@ -5,16 +5,16 @@ import { regions, rewards, rounds, standings, teams, tournaments } from "@/lib/v
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "VEXA — The tournament layer for college esports" },
+      { title: "NMIMS VEXA — NMIMS Inter-Campus Esports Tournament" },
       {
         name: "description",
         content:
-          "Fifty-one colleges, six regions, one bracket. Track fixtures, standings, rewards and register your campus team on VEXA.",
+          "Six NMIMS campuses, 16 teams, one bracket. Track fixtures, standings, rewards and register your NMIMS campus team.",
       },
-      { property: "og:title", content: "VEXA — The tournament layer for college esports" },
+      { property: "og:title", content: "NMIMS VEXA — NMIMS Inter-Campus Esports Tournament" },
       {
         property: "og:description",
-        content: "Fifty-one colleges, six regions, one bracket. Register your campus team.",
+        content: "Six NMIMS campuses, 16 teams, one bracket. Register your NMIMS campus team.",
       },
     ],
   }),
@@ -31,16 +31,15 @@ function Index() {
       <header className="mx-auto grid max-w-7xl items-center gap-8 px-6 py-12 lg:grid-cols-[1.05fr_.95fr] lg:py-16">
         <div className="rise">
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
-            Season 04 · Winter Circuit
+            NMIMS 2026 · Inter-Campus Circuit
           </p>
           <h1 className="mt-3 font-display text-5xl font-bold leading-[1.03] tracking-tight text-balance md:text-6xl">
-            The arena goes dark.
+            The Campus Arena.
             <br />
-            The banners rise.
+            The Ultimate Trophy.
           </h1>
           <p className="mt-5 max-w-[48ch] text-[15px] leading-relaxed text-pretty text-muted">
-            Fifty-one colleges. Six regions. One bracket that decides who carries the trophy across
-            campus. Every match, every round, one clear scoreboard.
+            Six NMIMS campuses. Sixteen teams. One inter-campus bracket to decide who carries the championship trophy across campus.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Link
@@ -58,16 +57,16 @@ function Index() {
           </div>
           <div className="mt-8 flex gap-7 border-t border-border/60 pt-6 font-mono text-[11px] uppercase tracking-wider text-muted">
             <span>
-              <span className="block font-display text-2xl font-bold text-foreground">51</span>
-              colleges
-            </span>
-            <span>
               <span className="block font-display text-2xl font-bold text-foreground">6</span>
-              regions
+              NMIMS Campuses
             </span>
             <span>
-              <span className="block font-display text-2xl font-bold text-foreground">$40k</span>
-              prize pool
+              <span className="block font-display text-2xl font-bold text-foreground">16</span>
+              Campus Teams
+            </span>
+            <span>
+              <span className="block font-display text-2xl font-bold text-accent">₹50,000</span>
+              Prize Pool
             </span>
           </div>
         </div>
@@ -80,17 +79,17 @@ function Index() {
                 <span className="livedot size-1.5 rounded-full bg-live" />
                 Live · Semifinal
               </span>
-              <span className="font-mono text-[10px] text-muted">Winter Cup</span>
+              <span className="font-mono text-[10px] text-muted">NMIMS Championship</span>
             </div>
             <div className="grid grid-cols-3 items-center gap-2 p-5">
               <div className="flex flex-col items-center gap-2.5 text-center">
-                <TeamCrest short="GH" size="lg" />
+                <TeamCrest short="NNS" size="lg" />
                 <span className="font-display text-[13px] leading-tight font-semibold">
-                  Granite
+                  Navi Mumbai
                   <br />
-                  Hollow
+                  Strikers
                 </span>
-                <span className="font-mono text-[10px] text-muted">Mountain West</span>
+                <span className="font-mono text-[10px] text-muted">Navi Mumbai Campus</span>
               </div>
               <div className="text-center">
                 <div className="font-display text-3xl font-bold tracking-tight">
@@ -101,18 +100,17 @@ function Index() {
                 </div>
               </div>
               <div className="flex flex-col items-center gap-2.5 text-center">
-                <TeamCrest short="MC" size="lg" alt />
+                <TeamCrest short="NBT" size="lg" alt />
                 <span className="font-display text-[13px] leading-tight font-semibold">
-                  Maple
+                  Bengaluru
                   <br />
-                  Crest
+                  Titans
                 </span>
-                <span className="font-mono text-[10px] text-muted">Heartland</span>
+                <span className="font-mono text-[10px] text-muted">Bengaluru Campus</span>
               </div>
             </div>
             <div className="border-t border-border/70 px-5 py-3 text-[11px] text-muted">
-              Winner takes <span className="font-semibold text-foreground">$18,000</span> + the
-              Winter Cup
+              Winner advances to <span className="font-semibold text-foreground">Grand Final + ₹25,000 Grand Prize</span>
             </div>
           </div>
         </div>
@@ -124,31 +122,28 @@ function Index() {
           <div>
             <p className="font-mono text-[10px] uppercase tracking-widest text-accent">Format</p>
             <p className="mt-2 text-[13px] text-pretty text-muted">
-              Group stage of five rounds, then a single-elimination bracket. All playoff matches are
-              best of three.
+              Group stage rounds followed by single-elimination playoff brackets for NMIMS campus teams.
             </p>
           </div>
           <div>
             <p className="font-mono text-[10px] uppercase tracking-widest text-accent">Eligibility</p>
             <p className="mt-2 text-[13px] text-pretty text-muted">
-              Any enrolled student with a valid campus ID. Five players and one substitute per
-              roster.
+              Open to enrolled NMIMS students across all campus locations with a valid student ID.
             </p>
           </div>
           <div>
             <p className="font-mono text-[10px] uppercase tracking-widest text-accent">Schedule</p>
             <p className="mt-2 text-[13px] text-pretty text-muted">
-              Weeknight matches from 18:00, finals on Saturdays. Seeding and scheduling are handled
-              by VEXA.
+              Inter-campus weeknight matches starting from 18:00, with grand finals streamed live.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Upcoming tournaments */}
+      {/* Inter-campus events */}
       <section className="mx-auto max-w-7xl px-6 pb-14">
         <div className="mb-5 flex items-end justify-between">
-          <h2 className="font-display text-lg font-bold tracking-tight">Upcoming tournaments</h2>
+          <h2 className="font-display text-lg font-bold tracking-tight">NMIMS Inter-Campus Tournaments</h2>
           <Link
             to="/tournaments"
             className="font-mono text-[11px] uppercase tracking-wider text-accent"
@@ -169,7 +164,7 @@ function Index() {
               </span>
               <h3 className="mt-2 font-display text-base font-semibold">{t.name}</h3>
               <p className="mt-1 text-[12px] text-muted">{t.meta}</p>
-              <span className="mt-3 inline-block rounded bg-foreground/5 px-2 py-1 font-mono text-[10px] text-accent">
+              <span className="mt-3 inline-block rounded bg-accent/10 px-2 py-1 font-mono text-[10px] text-accent">
                 {t.status}
               </span>
             </Link>
@@ -180,7 +175,7 @@ function Index() {
       {/* Championship rewards */}
       <section className="border-y border-border/70 bg-panel/25 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-6 py-10">
-          <h2 className="font-display text-lg font-bold tracking-tight">Championship rewards</h2>
+          <h2 className="font-display text-lg font-bold tracking-tight">Championship Rewards</h2>
           <div className="mt-5 grid gap-4 md:grid-cols-3">
             {rewards.map((r) => (
               <div key={r.place} className="glass rounded-xl p-5">
@@ -197,7 +192,7 @@ function Index() {
 
       {/* Campus regions */}
       <section className="mx-auto max-w-7xl px-6 py-14">
-        <h2 className="font-display text-lg font-bold tracking-tight">Campus regions</h2>
+        <h2 className="font-display text-lg font-bold tracking-tight">Participating NMIMS Campuses</h2>
         <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {regions.map((r) => (
             <div
@@ -214,7 +209,7 @@ function Index() {
       {/* Featured teams */}
       <section className="border-t border-border/70 bg-panel/25 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-6 py-14">
-          <h2 className="font-display text-lg font-bold tracking-tight">Featured teams</h2>
+          <h2 className="font-display text-lg font-bold tracking-tight">Featured NMIMS Campus Teams</h2>
           <div className="mt-5 grid gap-4 md:grid-cols-3">
             {featured.map((t) => (
               <Link
@@ -247,7 +242,7 @@ function Index() {
       {/* Fixtures preview */}
       <section className="mx-auto max-w-7xl px-6 py-14">
         <div className="mb-5 flex items-end justify-between">
-          <h2 className="font-display text-lg font-bold tracking-tight">Next up</h2>
+          <h2 className="font-display text-lg font-bold tracking-tight">Upcoming Campus Matches</h2>
           <Link
             to="/fixtures"
             className="font-mono text-[11px] uppercase tracking-wider text-accent"
@@ -277,16 +272,16 @@ function Index() {
       <section className="mx-auto max-w-7xl px-6 pb-14">
         <div className="glass rounded-2xl p-8 text-center">
           <h2 className="font-display text-2xl font-bold tracking-tight text-balance">
-            Your campus has a bracket to defend.
+            Represent your NMIMS campus on the main stage.
           </h2>
-          <p className="mx-auto mt-2 max-w-[42ch] text-[13px] text-pretty text-muted">
-            Register a team in under five minutes. VEXA handles seeding, scheduling, and broadcast.
+          <p className="mx-auto mt-2 max-w-[44ch] text-[13px] text-pretty text-muted">
+            Register your team in under five minutes. Compete against fellow NMIMS campuses.
           </p>
           <Link
             to="/register"
             className="mt-5 inline-block rounded-lg bg-accent px-6 py-2.5 font-semibold text-accent-foreground transition hover:brightness-110"
           >
-            Register now
+            Register your campus team
           </Link>
         </div>
       </section>
@@ -294,7 +289,7 @@ function Index() {
       {/* Standings teaser */}
       <section className="mx-auto max-w-7xl px-6 pb-14">
         <div className="mb-5 flex items-end justify-between">
-          <h2 className="font-display text-lg font-bold tracking-tight">Standings · Group A</h2>
+          <h2 className="font-display text-lg font-bold tracking-tight">Campus Standings · Group A</h2>
           <Link
             to="/standings"
             className="font-mono text-[11px] uppercase tracking-wider text-accent"
